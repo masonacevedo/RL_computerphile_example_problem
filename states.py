@@ -1,6 +1,6 @@
 from enum import Enum, auto
 
-class State(Enum):
+class States(Enum):
     HOME = auto()
     LIGHT_TRAFFIC = auto()
     MEDIUM_TRAFFIC = auto()
@@ -8,9 +8,3 @@ class State(Enum):
     AT_STATION = auto()
     ON_TRAIN = auto()
     AT_WORK = auto()
-
-    def __str__(self):
-        return self.value
-
-    def __repr__(self):
-        return self.value

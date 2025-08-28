@@ -1,6 +1,6 @@
 from enum import Enum, auto
 
-class Action(Enum):
+class Actions(Enum):
     TAKE_BIKE = auto()
     TAKE_CAR = auto()
     SIT_IN_LIGHT_TRAFFIC = auto()
@@ -10,9 +10,3 @@ class Action(Enum):
     WAIT_FOR_TRAIN = auto()
     GO_BACK_HOME = auto()
     SIT_ON_TRAIN = auto()
-
-    def __str__(self):
-        return self.value
-
-    def __repr__(self):
-        return self.value
