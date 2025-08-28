@@ -6,7 +6,7 @@ class Action(Enum):
     SIT_IN_LIGHT_TRAFFIC = auto()
     SIT_IN_MEDIUM_TRAFFIC = auto()
     SIT_IN_HEAVY_TRAFFIC = auto()
-    GO_TO_STATION = auto()
+    TAKE_TRAIN = auto()
     WAIT_FOR_TRAIN = auto()
     GO_BACK_HOME = auto()
     SIT_ON_TRAIN = auto()
