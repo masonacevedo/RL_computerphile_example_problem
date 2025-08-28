@@ -27,5 +27,5 @@ def C(s: State, a: Action) -> int:
     if (s, a) == (State.AT_STATION, Action.WAIT_FOR_TRAIN):
         return 3
     
-    if (s, a) == {State.AT_STATION, Action.GO_BACK_HOME}:
+    if (s, a) == (State.AT_STATION, Action.GO_BACK_HOME):
         return 2
