@@ -12,24 +12,23 @@ def T(s: State, a: Action) -> State:
                 0.7: State.MEDIUM_TRAFFIC, 
                 0.1: State.HEAVY_TRAFFIC}
 
-    if (s, a) == (State.HOME, Action.SIT_IN_LIGHT_TRAFFIC):
-        return {1.0: State.AT_WORK}
-
-    if (s, a) == (State.HOME, Action.SIT_IN_MEDIUM_TRAFFIC):
-        return {1.0: State.AT_WORK}
-    if (s, a) == (State.HOME, Action.SIT_IN_HEAVY_TRAFFIC):
+    if (s, a) == (State.LIGHT_TRAFFIC, Action.SIT_IN_LIGHT_TRAFFIC):
         return {1.0: State.AT_WORK}
     
+    if (s, a) == (State.MEDIUM_TRAFFIC, Action.SIT_IN_MEDIUM_TRAFFIC):
+        return {1.0: State.AT_WORK}
+    
+    if (s, a) == (State.HEAVY_TRAFFIC, Action.SIT_IN_HEAVY_TRAFFIC):
+        return {1.0: State.AT_WORK}
 
     if (s, a) == (State.HOME, Action.TAKE_TRAIN):
         return {0.9: State.ON_TRAIN, 0.1: State.AT_STATION}
     
-
     if (s, a) == (State.ON_TRAIN, Action.SIT_ON_TRAIN):
         return {1.0: State.AT_WORK}
 
     if (s, a) == (State.AT_STATION, Action.WAIT_FOR_TRAIN):
         return {0.9: State.ON_TRAIN, 0.1: State.AT_STATION}
-    
+
     if (s, a) == {State.AT_STATION, Action.GO_BACK_HOME}:
         return {1.0: State.HOME}
