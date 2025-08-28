@@ -1,6 +1,3 @@
-# transition function: 
-#  probability of ending up in a particular state given that we are in a certain state,
-#  and take a certain action
 
 from states import State
 from actions import Action
