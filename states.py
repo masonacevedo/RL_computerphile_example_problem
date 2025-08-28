@@ -7,6 +7,7 @@ class State(Enum):
     HEAVY_TRAFFIC = auto()
     AT_STATION = auto()
     ON_TRAIN = auto()
+    AT_WORK = auto()
 
     def __str__(self):
         return self.value
