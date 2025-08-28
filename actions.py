@@ -1,15 +1,15 @@
-from enum import Enum
+from enum import Enum, auto
 
 class Action(Enum):
-    TAKE_BIKE = "take_bike"
-    TAKE_CAR = "take_car"
-    SIT_IN_LIGHT_TRAFFIC = "sit_in_light_traffic"
-    SIT_IN_MEDIUM_TRAFFIC = "sit_in_medium_traffic"
-    SIT_IN_HEAVY_TRAFFIC = "sit_in_heavy_traffic"
-    GO_TO_STATION = "go_to_station"
-    WAIT_FOR_TRAIN = "wait_at_station"
-    GO_BACK_HOME = "go_back_home"
-    SIT_ON_TRAIN = "sit_on_train"
+    TAKE_BIKE = auto()
+    TAKE_CAR = auto()
+    SIT_IN_LIGHT_TRAFFIC = auto()
+    SIT_IN_MEDIUM_TRAFFIC = auto()
+    SIT_IN_HEAVY_TRAFFIC = auto()
+    GO_TO_STATION = auto()
+    WAIT_FOR_TRAIN = auto()
+    GO_BACK_HOME = auto()
+    SIT_ON_TRAIN = auto()
 
     def __str__(self):
         return self.value

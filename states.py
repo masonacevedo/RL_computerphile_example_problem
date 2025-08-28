@@ -1,12 +1,12 @@
-from enum import Enum
+from enum import Enum, auto
 
 class State(Enum):
-    HOME = "home"
-    LIGHT_TRAFFIC = "light_traffic"
-    MEDIUM_TRAFFIC = "medium_traffic"
-    HEAVY_TRAFFIC = "heavy_traffic"
-    AT_STATION = "at_station"
-    ON_TRAIN = "on_train"
+    HOME = auto()
+    LIGHT_TRAFFIC = auto()
+    MEDIUM_TRAFFIC = auto()
+    HEAVY_TRAFFIC = auto()
+    AT_STATION = auto()
+    ON_TRAIN = auto()
 
     def __str__(self):
         return self.value
