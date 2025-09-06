@@ -1,6 +1,48 @@
 import random
 
+from states import States
+from actions import Actions
+from transitions import T
+from costs import C
+
+VALID_ACTIONS = set(
+    [
+        (States.HOME, Actions.TAKE_BIKE),
+        (States.HOME, Actions.TAKE_CAR),
+        (States.HOME, Actions.TAKE_TRAIN),
+        (States.LIGHT_TRAFFIC, Actions.DRIVE_IN_LIGHT_TRAFFIC),
+        (States.MEDIUM_TRAFFIC, Actions.DRIVE_IN_MEDIUM_TRAFFIC),
+        (States.HEAVY_TRAFFIC, Actions.DRIVE_IN_HEAVY_TRAFFIC),
+        (States.ON_TRAIN, Actions.SIT_ON_TRAIN),
+        (States.AT_STATION, Actions.WAIT_FOR_TRAIN),
+        (States.AT_STATION, Actions.GO_BACK_HOME)
+    ]
+)
+
+GAMMA = 0.5
+
+def Q(s, a, values):
+    if (s, a) not in VALID_ACTIONS:
+        raise Exception(f"Invalid action from state: {a}, {s}")
+    
+    immediate_cost = C(s,a)
+    future_cost = 0
+    transition_probabilities, potential_successor_states = zip(*T(s,a).items())
+
+    for transition_probability, successor_state in zip(transition_probabilities, potential_successor_states):
+        future_cost += transition_probability * values[successor_state]
+
+    return immediate_cost + future_cost
 
 
 if __name__ == "__main__":
-    pass
+    values = {s: 100 for s in States}
+    values[States.AT_WORK] = 0
+    
+    print("Home, take bike: ",Q(States.HOME, Actions.TAKE_BIKE, values))
+    print("Home, take car:  ",Q(States.HOME, Actions.TAKE_CAR, values))
+    print("Home, take train:",Q(States.HOME, Actions.TAKE_TRAIN, values))
+
+    print("Light traffic, drive in light traffic: ",Q(States.LIGHT_TRAFFIC, Actions.DRIVE_IN_LIGHT_TRAFFIC, values))
+    print("Medium traffic, drive in medium traffic: ",Q(States.MEDIUM_TRAFFIC, Actions.DRIVE_IN_MEDIUM_TRAFFIC, values))
+    print("Heavy traffic, drive in heavy traffic: ",Q(States.HEAVY_TRAFFIC, Actions.DRIVE_IN_HEAVY_TRAFFIC, values))
