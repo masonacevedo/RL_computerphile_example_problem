@@ -45,7 +45,8 @@ if __name__ == "__main__":
     values = {s: 100 for s in States}
     values[States.AT_WORK] = 0
     
-    for i in range(0, 100):
+    for i in range(0, 10):
         print("Iteration: ", i)
         print("Values: ", values)
+        input("Press Enter to continue...")
         update_values(values)
