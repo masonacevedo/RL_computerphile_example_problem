@@ -30,8 +30,7 @@ def Q(s, a, values):
     transition_probabilities, potential_successor_states = zip(*T(s,a).items())
 
     for transition_probability, successor_state in zip(transition_probabilities, potential_successor_states):
-        future_cost += transition_probability * values[successor_state]
-
+        future_cost += (transition_probability * values[successor_state])
     return immediate_cost + future_cost
 
 def update_values(values):
@@ -46,19 +45,7 @@ if __name__ == "__main__":
     values = {s: 100 for s in States}
     values[States.AT_WORK] = 0
     
-    # print("Home, take bike: ",Q(States.HOME, Actions.TAKE_BIKE, values))
-    # print("Home, take car:  ",Q(States.HOME, Actions.TAKE_CAR, values))
-    # print("Home, take train:",Q(States.HOME, Actions.TAKE_TRAIN, values))
-
-    # print("Light traffic, drive in light traffic: ",Q(States.LIGHT_TRAFFIC, Actions.DRIVE_IN_LIGHT_TRAFFIC, values))
-    # print("Medium traffic, drive in medium traffic: ",Q(States.MEDIUM_TRAFFIC, Actions.DRIVE_IN_MEDIUM_TRAFFIC, values))
-    # print("Heavy traffic, drive in heavy traffic: ",Q(States.HEAVY_TRAFFIC, Actions.DRIVE_IN_HEAVY_TRAFFIC, values))
-
-    print("Initial Values: ", values)
-    update_values(values)
-    print("Updated Values: ", values)
-    update_values(values)
-    print("Updated Values: ", values)
-    update_values(values)
-    print("Updated Values: ", values)
-    
+    for i in range(0, 100):
+        print("Iteration: ", i)
+        print("Values: ", values)
+        update_values(values)
