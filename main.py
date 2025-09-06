@@ -34,15 +34,31 @@ def Q(s, a, values):
 
     return immediate_cost + future_cost
 
+def update_values(values):
+    for s in States:
+        if s == States.AT_WORK:
+            continue
+        valid_actions_from_state = [a for a in Actions if (s, a) in VALID_ACTIONS]
+        values[s] = min(Q(s, a, values) for a in valid_actions_from_state)
+
 
 if __name__ == "__main__":
     values = {s: 100 for s in States}
     values[States.AT_WORK] = 0
     
-    print("Home, take bike: ",Q(States.HOME, Actions.TAKE_BIKE, values))
-    print("Home, take car:  ",Q(States.HOME, Actions.TAKE_CAR, values))
-    print("Home, take train:",Q(States.HOME, Actions.TAKE_TRAIN, values))
+    # print("Home, take bike: ",Q(States.HOME, Actions.TAKE_BIKE, values))
+    # print("Home, take car:  ",Q(States.HOME, Actions.TAKE_CAR, values))
+    # print("Home, take train:",Q(States.HOME, Actions.TAKE_TRAIN, values))
 
-    print("Light traffic, drive in light traffic: ",Q(States.LIGHT_TRAFFIC, Actions.DRIVE_IN_LIGHT_TRAFFIC, values))
-    print("Medium traffic, drive in medium traffic: ",Q(States.MEDIUM_TRAFFIC, Actions.DRIVE_IN_MEDIUM_TRAFFIC, values))
-    print("Heavy traffic, drive in heavy traffic: ",Q(States.HEAVY_TRAFFIC, Actions.DRIVE_IN_HEAVY_TRAFFIC, values))
+    # print("Light traffic, drive in light traffic: ",Q(States.LIGHT_TRAFFIC, Actions.DRIVE_IN_LIGHT_TRAFFIC, values))
+    # print("Medium traffic, drive in medium traffic: ",Q(States.MEDIUM_TRAFFIC, Actions.DRIVE_IN_MEDIUM_TRAFFIC, values))
+    # print("Heavy traffic, drive in heavy traffic: ",Q(States.HEAVY_TRAFFIC, Actions.DRIVE_IN_HEAVY_TRAFFIC, values))
+
+    print("Initial Values: ", values)
+    update_values(values)
+    print("Updated Values: ", values)
+    update_values(values)
+    print("Updated Values: ", values)
+    update_values(values)
+    print("Updated Values: ", values)
+    
