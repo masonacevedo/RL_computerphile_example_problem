@@ -1,4 +1,5 @@
 import random
+import copy
 
 from states import States
 from actions import Actions
@@ -38,15 +39,24 @@ def update_values(values):
         if s == States.AT_WORK:
             continue
         valid_actions_from_state = [a for a in Actions if (s, a) in VALID_ACTIONS]
-        values[s] = min(Q(s, a, values) for a in valid_actions_from_state)
+        values[s] = min(Q(s, a, values) for a in valid_actions_from_state)  
 
 
 if __name__ == "__main__":
     values = {s: 100 for s in States}
     values[States.AT_WORK] = 0
-    
-    for i in range(0, 10):
-        print("Iteration: ", i)
-        print("Values: ", values)
-        input("Press Enter to continue...")
+
+    print("Initial Values: ", values)
+
+    i = 1
+    old_values = copy.deepcopy(values)
+    update_values(values)
+    new_values = copy.deepcopy(values)
+    while any(abs(old_values[s] - new_values[s]) > 0.000001 for s in States):
+        old_values = copy.deepcopy(values)
         update_values(values)
+        new_values = copy.deepcopy(values)
+        i += 1
+
+    print(f"\nThreshold reached after {i} iterations. Stopping.\n")
+    print("Final Values: ", values)
